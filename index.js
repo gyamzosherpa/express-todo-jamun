@@ -137,6 +137,7 @@ app.post("/todos", todoController.createTodo);
 app.get("/todos/edit/:id", todoController.editTodo);
 app.post("/todos/edit/:id", todoController.updateTodo);
 app.get("/todos", todoController.searchTodos);
+app.post("/todos/delete/:id", todoController.deleteTodo);
 
 // Server runs
 app.listen(PORT, () => {
