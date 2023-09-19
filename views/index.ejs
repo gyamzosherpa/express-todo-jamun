@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="header">Todo App</h1>
+      <form class="form" action="/todos" method="post">
+        <input
+          type="text"
+          name="todoItem"
+          id="todoItem"
+          placeholder="Enter your new todo"
+          required
+        />
+        <select name="status" required>
+          <option value="Todo">Todo</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Done">Done</option>
+        </select>
+        <button type="submit" id="add-todo-btn">Add</button>
+      </form>
+      <div class="search">
+        <form action="/todos" method="get">
+          <input
+            type="text"
+            name="search"
+            id="searchTodo-item"
+            placeholder="Search todos"
+          />
+          <button type="submit" id="search-todo-btn">Search</button>
+        </form>
+      </div>
+
+      <% if(search) { %>
+      <p class="search-result">Search result for: <%= search %></p>
+      <div class="clear-button">
+        <a href="/" id="clear-todo-btn">Clear</a>
+      </div>
+      <% } %>
+
+      <ul class="todo-list">
+        <% todos.forEach((todo) => { %>
+        <li>
+          <%= todo.name %> <b><%= todo.status %></b>
+          <a href="/todos/edit/<%= todo._id  %>">edit</a>
+
+          <form method="post" action="/todos/delete/<%= todo._id  %>">
+            <button type="submit">delete</button>
+          </form>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>

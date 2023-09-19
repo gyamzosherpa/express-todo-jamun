@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form method="post" action="/todos/edit/<%= todo._id %>">
+      <input
+        type="text"
+        name="updatedTodo"
+        placeholder="New Todo Name"
+        value="<%= todo.name %>"
+      />
+      <select name="status" id="">
+        <option value="Todo" <%= todo.status === 'Todo' ? 'selected' : '' %>>
+          Todo
+        </option>
+        <option value="In Progress" <%= todo.status === 'In Progress' ? 'selected' : '' %>>
+          In Progress
+        </option>
+        <option value="Done" <%= todo.status === 'Done' ? 'selected' : '' %>>
+          Done
+        </option> 
+      </select>
+       <button type="">update</button>
+    
+
+      <a href="/" id="clear-todo-btn">Clear</a>
+    </form>
+  </body>
+</html>
