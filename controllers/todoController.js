@@ -66,6 +66,26 @@ exports.updateTodo = async (req, res) => {
   }
 };
 
+// delete todo
+exports.deleteTodo = async (req, res) => {
+  const todoId = req.params.id;
+
+  try {
+    const deletedTodo = await Todo.findByIdAndRemove(todoId);
+
+    if (!deletedTodo) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    console.log("Todo deleted successfully:", deletedTodo);
+    // Redirect to the index page after deletion
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 //  get todo search
 exports.searchTodos = async (req, res) => {
   const { search, status } = req.query;
